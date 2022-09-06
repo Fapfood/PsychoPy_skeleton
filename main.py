@@ -100,7 +100,7 @@ def abort_with_error(err):
 RESULTS = list()  # list in which data will be collected
 RESULTS.append(['PART_ID', 'block no', 'trial no', 'key pressed', 'reaction time', 'cars left right orientation',
                 'middle car left right orientation', 'cars top down orientation', 'cue position or absence',
-                'middle car position (shift)'])  # ... Results header
+                'middle car position (shift)', 'variable time before stim'])  # ... Results header
 
 
 def main():
@@ -167,7 +167,7 @@ def main():
 
     for _ in range(conf['NO_TRAINING_TRIALS']):
         key_pressed, rt, cars_lr_orientation, middle_car_lr_orientation, \
-        cars_td_orientation, cue_position, middle_car_position \
+        cars_td_orientation, cue_position, middle_car_position, variable_time \
             = run_trial(win, conf, background, cue, car1, car2, car3, car4, car5, clock)
         if middle_car_position in ['left', 'right']:
             if key_pressed == 'space':
@@ -190,7 +190,8 @@ def main():
         else:
             corr = False
         RESULTS.append([PART_ID, 'training', trial_no, key_pressed, rt, cars_lr_orientation,
-                        middle_car_lr_orientation, cars_td_orientation, cue_position, middle_car_position])
+                        middle_car_lr_orientation, cars_td_orientation, cue_position,
+                        middle_car_position, variable_time])
 
         # it's often good presenting feedback in training trials
         feedb = 'Poprawnie!' if corr else f'Niepoprawnie...\nPoprawna to: [{cor_res}]'
@@ -209,10 +210,11 @@ def main():
     for block_no in range(conf['NO_BLOCKS']):
         for _ in range(conf['NO_TRIALS_IN_BLOCK']):
             key_pressed, rt, cars_lr_orientation, middle_car_lr_orientation, \
-            cars_td_orientation, cue_position, middle_car_position \
+            cars_td_orientation, cue_position, middle_car_position, variable_time \
                 = run_trial(win, conf, background, cue, car1, car2, car3, car4, car5, clock)
             RESULTS.append([PART_ID, block_no, trial_no, key_pressed, rt, cars_lr_orientation,
-                            middle_car_lr_orientation, cars_td_orientation, cue_position, middle_car_position])
+                            middle_car_lr_orientation, cars_td_orientation, cue_position,
+                            middle_car_position, variable_time])
             trial_no += 1
 
     # === Cleaning time ===
@@ -331,7 +333,7 @@ def run_trial(win, conf, background, cue, car1, car2, car3, car4, car5, clock):
         rt = -1.0
 
     return key_pressed, rt, cars_lr_orientation, middle_car_lr_orientation, \
-           cars_td_orientation, cue_position, middle_car_position  # return all data collected during trial
+           cars_td_orientation, cue_position, middle_car_position, variable_time  # return all data collected during trial
 
 
 if __name__ == '__main__':
