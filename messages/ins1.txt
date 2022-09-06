@@ -1,0 +1,11 @@
+Wyobraź sobie, że pracujesz w Centrum Zarządzania Dróg i analizujesz zachowanie osób parkujących samochody.
+
+Wyświetli Ci się rząd pięciu samochodów.
+Musisz określić, czy samochód, który znajduje się na ŚRODKU rzędu
+jest skierowany w LEWĄ czy w PRAWĄ stronę.
+
+Jeśli ŚRODKOWY samochód jest skierowany w:
+LEWO — wciśnij klawisz “c”
+PRAWO — wciśnij klawisz “m”
+
+Wciśnij SPACJĘ, żeby kontynuować.
